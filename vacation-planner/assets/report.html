@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>@@TITLE@@</title>
+<style>
+:root{color-scheme:light;--ink:#20392e;--muted:#55685e;--paper:#faf8f1;--line:#d3d9ce;--accent:#275b45}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 system-ui,sans-serif}main{max-width:1320px;margin:auto;padding:40px 28px}h1,h2,h3,h4{line-height:1.2}h1{font:clamp(2.5rem,6vw,5rem)/1.05 Georgia,serif;max-width:950px;margin:16px 0 24px}h2{font:2rem/1.2 Georgia,serif;margin-top:38px}h3{font-size:1.3rem}h4{font-size:1.12rem;margin:12px 0}.eyebrow{text-transform:uppercase;letter-spacing:.13em;font-size:.75rem;font-weight:750;color:var(--accent)}.lead{font-size:1.15rem}.brief{display:flex;flex-wrap:wrap;gap:24px}.brief div{flex:1;min-width:145px}dt{font-size:.8rem;color:var(--muted)}dd{margin:0}header{border-bottom:1px solid var(--line);padding-bottom:20px}a{color:#17583e;text-underline-offset:3px;overflow-wrap:anywhere}a:hover{text-decoration-thickness:2px}button,select{font:inherit;padding:10px 14px;border:1px solid var(--accent);border-radius:6px;background:white;color:var(--ink)}button{cursor:pointer}button:hover,button[aria-pressed=true]{background:var(--accent);color:white}button:focus-visible,a:focus-visible,select:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid #bc6827;outline-offset:3px}[hidden]{display:none!important}p{margin:12px 0}.notice{border-left:4px solid #ad672b;background:#f4ebd9;padding:14px 18px;margin:20px 0}details{margin:16px 0}summary{cursor:pointer;font-weight:600}.comparison{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin:24px 0}.choice{border-top:3px solid var(--accent);padding:12px 18px 22px;background:#eef0e8}.price{font-size:1.6rem;font-weight:700}.day-filter{display:flex;align-items:center;gap:12px;margin:24px 0}.day{border-top:1px solid var(--line);padding:12px 0 24px}.timeline{list-style:none;padding:0}.timeline li{display:grid;grid-template-columns:125px 1fr;gap:20px;padding:14px 0;border-bottom:1px solid #e4e6de}.time{font-variant-numeric:tabular-nums;color:var(--muted)}.timeline p{margin:4px 0}.places{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}.place{padding:22px;background:white;border:1px solid var(--line);border-radius:6px;scroll-margin-top:24px}.place:target{outline:3px solid var(--accent)}.place-cost{font-size:.9rem;background:#eef0e8;padding:10px}.sources{font-size:.8rem}.totals{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;background:var(--ink);color:white;padding:24px}.totals span,.totals strong{display:block}.totals span{font-size:.8rem}.totals strong{font-size:1.1rem;margin-top:6px}.breakdown{display:flex;flex-wrap:wrap;gap:40px}.table-scroll{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:760px}caption{text-align:left;padding:18px 0}th,td{text-align:left;vertical-align:top;padding:12px;border-bottom:1px solid var(--line)}thead{background:#e9ede4}tbody th{font-weight:600}.map-shell{max-width:1264px;margin:0 auto 40px;padding:0 28px}.map-shell h2{margin-top:0}#map{height:460px;border:1px solid var(--line);border-radius:6px;background:#e5eadd}#map-status{color:var(--muted);font-size:.9rem}.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:.85rem}.legend span::before{content:'●';color:var(--dot);margin-right:6px}footer{border-top:1px solid var(--line);padding-top:24px;margin-top:40px;color:var(--muted);font-size:.85rem}.skip{position:absolute;left:-9999px}.skip:focus{left:16px;top:8px;background:white;padding:10px;z-index:2000}.map-action{margin:6px 0}.js .option{scroll-margin-top:20px}@media(max-width:600px){main{padding:24px 16px}.map-shell{padding:0 16px}.timeline li{grid-template-columns:1fr;gap:4px}.comparison,.places{grid-template-columns:1fr}.brief{gap:12px}.brief div{min-width:120px}#map{height:350px}}@media print{body{background:white;font-size:11pt}main{padding:0}.option[hidden],.day[hidden]{display:block!important}button,.day-filter,.map-shell,.skip{display:none!important}.place,.choice,.day{break-inside:avoid}.comparison,.places{display:block}.table-scroll{overflow:visible}table{min-width:0}details{display:block}.totals{background:white;color:black;border:1px solid #aaa}}
+</style>
+</head>
+<body>
+<a class="skip" href="#report">Vai all’itinerario</a>
+<main id="report">@@REPORT@@</main>
+<section class="map-shell" id="map-section" aria-labelledby="map-heading">
+<h2 id="map-heading">I luoghi del viaggio</h2>
+<p>La mappa segue proposta e giornata selezionate. Tocca un punto per leggere la scheda.</p>
+<div class="legend"><span style="--dot:#275b45">Alloggi</span><span style="--dot:#b05a25">Ristoranti</span><span style="--dot:#365f9d">Visite</span><span style="--dot:#73538c">Trasporti</span></div>
+<p id="map-status" role="status">Cartografia online; itinerario e costi rimangono leggibili senza connessione.</p>
+<div id="map" role="region" aria-label="Mappa interattiva dei luoghi"></div>
+<details id="local-help"><summary>Aprire la mappa dal computer</summary><p>Nella cartella che contiene soltanto i file del viaggio, avvia:</p><pre><code>python3 -m http.server 8765 --bind 127.0.0.1</code></pre><p>Poi apri <a id="preview-link" href="http://127.0.0.1:8765/">l’anteprima locale</a>. Serve connessione Internet. Puoi anche usare i link “Apri in Maps” delle singole schede.</p></details>
+<noscript><p>JavaScript disattivato: tutte le proposte sono leggibili sopra; per le posizioni usa i link nelle schede.</p></noscript>
+</section>
+<script id="map-data" type="application/json">@@MAP_DATA@@</script>
+<script>
+(() => {
+  'use strict';
+  const data = JSON.parse(document.getElementById('map-data').textContent);
+  const status = document.getElementById('map-status');
+  const shell = document.getElementById('map-section');
+  const colors = {hotel:'#275b45', restaurant:'#b05a25', attraction:'#365f9d', transport:'#73538c'};
+  let active = data.recommended, map = null, markers = new Map(), layer = null;
+  document.documentElement.classList.add('js');
+  if (!data.options.length) { shell.hidden = true; return; }
+  const selectedDay = () => document.querySelector(`[data-day-select="${active}"]`).value;
+  function updateMap() {
+    if (!map) return;
+    layer.clearLayers(); markers.clear();
+    const day = selectedDay(), points = [];
+    let missing = 0;
+    data.options[active].forEach(place => {
+      if (day !== 'all' && !place.days.includes(Number(day))) return;
+      if (!place.coordinates) { missing++; return; }
+      const marker = L.circleMarker(place.coordinates, {radius:9, color:colors[place.kind], fillColor:colors[place.kind], fillOpacity:.85, weight:2}).addTo(layer);
+      const popup = document.createElement('div');
+      const name = document.createElement('strong'); name.textContent = place.name; popup.append(name, document.createElement('br'));
+      const anchor = document.createElement('a'); anchor.href = '#' + place.anchor; anchor.textContent = 'Leggi la scheda';
+      anchor.addEventListener('click', () => document.getElementById(place.anchor).focus({preventScroll:true}));
+      popup.append(anchor); marker.bindPopup(popup);
+      markers.set(place.anchor, marker); points.push(place.coordinates);
+    });
+    if (points.length) map.fitBounds(points, {padding:[28,28], maxZoom:14});
+    status.textContent = points.length ? `${points.length} luoghi sulla mappa.${missing ? ` ${missing} posizioni non verificate: consulta le schede.` : ''}` : 'Nessuna posizione verificata per questa selezione. Consulta le schede.';
+  }
+  function selectOption(index, scroll) {
+    active = index;
+    document.querySelectorAll('[data-option]').forEach(el => {el.hidden = Number(el.dataset.option) !== active;});
+    document.querySelectorAll('[data-select]').forEach(el => el.setAttribute('aria-pressed', String(Number(el.dataset.select) === active)));
+    updateMap();
+    if (scroll) document.getElementById(`option-${active}`).scrollIntoView({block:'start'});
+  }
+  document.querySelectorAll('[data-select]').forEach(button => button.addEventListener('click', () => selectOption(Number(button.dataset.select), true)));
+  document.querySelectorAll('[data-day-select]').forEach(select => select.addEventListener('change', () => {
+    select.closest('.option').querySelectorAll('[data-day]').forEach(day => {day.hidden = select.value !== 'all' && day.dataset.day !== select.value;});
+    updateMap();
+  }));
+  document.querySelectorAll('[data-focus]').forEach(button => button.addEventListener('click', () => {
+    const id = button.dataset.focus;
+    let marker = markers.get(id);
+    if (map && !marker) {
+      const select = document.querySelector(`[data-day-select="${active}"]`);
+      select.value = 'all'; select.dispatchEvent(new Event('change'));
+      marker = markers.get(id);
+    }
+    if (marker) { map.setView(marker.getLatLng(), 15); marker.openPopup(); }
+    if (button.tagName === 'BUTTON') { shell.scrollIntoView({block:'start'}); }
+  }));
+  selectOption(active, false);
+  const preview = document.getElementById('preview-link');
+  preview.href = 'http://127.0.0.1:8765/' + location.pathname.split('/').pop();
+  if (!['http:', 'https:'].includes(location.protocol)) {
+    status.textContent = 'File locale: cartografia disponibile nell’anteprima HTTP indicata sotto. Testi, costi e selettori funzionano anche offline.';
+    document.getElementById('local-help').open = true;
+    return;
+  }
+  document.getElementById('local-help').hidden = true;
+  const css = document.createElement('link'); css.rel = 'stylesheet'; css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+  css.integrity = 'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY='; css.crossOrigin = ''; document.head.append(css);
+  const script = document.createElement('script'); script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+  script.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo='; script.crossOrigin = '';
+  const unavailable = () => {status.textContent = 'Cartografia non disponibile. Itinerario, costi e link alle posizioni restano utilizzabili.';};
+  css.onerror = unavailable; script.onerror = unavailable;
+  script.onload = () => {
+    map = L.map('map').setView([42.5,12.5], 5);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom:19, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).on('tileerror', unavailable).addTo(map);
+    layer = L.layerGroup().addTo(map); updateMap();
+  };
+  document.head.append(script);
+})();
+</script>
+</body>
+</html>

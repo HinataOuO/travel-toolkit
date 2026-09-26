@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vacation Planner"
+  short_description: "Vacanze con itinerari, budget e mappa HTML"
+  default_prompt: "Usa $vacation-planner per organizzare la mia vacanza con alternative di costo e un report HTML con mappa."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Restaurant Finder"
+  short_description: "Locali classificati con punteggi e mappa HTML"
+  default_prompt: "Usa $restaurant-finder per trovare dove mangiare nella zona indicata e creare un report HTML con mappa e classifica."
